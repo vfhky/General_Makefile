@@ -1,11 +1,12 @@
-###########################################################
+##################################################################
 #
 # FILENAME   :	Makefile
-# DESCRIPTION:	A GENERAL MAKEFILE FOR C/C++ PROJECT
+# DESCRIPT	 :	A general makefile to generate an ELF or
+					a dynamic or a static library for C/C++ project.
 # AUTHOR	 : 	vfhky  2015.08.07
-# URI		 :	https://typecodes.com/cseries/cppgeneralmakefile.html
+# URI 		 :	https://typecodes.com/cseries/cppgeneralmakefile.html
 #
-###########################################################
+##################################################################
 
 .PHONY: all clean help
 all: 

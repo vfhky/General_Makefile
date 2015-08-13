@@ -25,9 +25,9 @@ EXCUTE_BIN		:=
 DYNAMIC_LIBS 	:= libsrcpbl.so
 
 # Environment settings. The value of PROJECT_DIR shoule be set in the *nix system as the the absolute dir path of your project.
+# PROJECT_DIR	:= /home/test_usr
 #CURDIR    		:= $(PROJECT_DIR)/src/pbl
 CURDIR     		:= $(shell pwd)
-# PROJECT_DIR	:= /home/test_usr
 PRG_BIN_DIR		:= $(PROJECT_DIR)/bin
 PRG_LIB_DIR		:= $(PROJECT_DIR)/lib
 PRG_INC_DIR		:= $(PROJECT_DIR)/include

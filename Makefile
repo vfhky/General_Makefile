@@ -72,9 +72,9 @@ CUR_OBJ		:= $(strip $(CUR_CPP:.cpp=.o) $(CUR_C:.c=.o))
 #CUR_DEP	:= $(addprefix $(PRG_BIN_DIR)/,$(notdir $(CUR_CPP:.cpp=.d) $(CUR_C:.c=.d)))
 CUR_DEP		:= $(strip $(CUR_CPP:.cpp=.d) $(CUR_C:.c=.d))
 
-# Create directory in the bin directory.
-# $(foreach dirname,$(sort $(dir $(CUR_C) $(CUR_CPP))),\
-#  $(shell $(MKDIR) $(PRG_BIN_DIR)/$(dirname)))
+# Create directory in the bin and library directory.
+$(foreach dirname,$(sort $(PRG_BIN_DIR) $(PRG_LIB_DIR)),\
+  $(shell $(MKDIR) $(dirname))))
 
 # Complie and link variables. LD_LIBS means the dynamic or static library needed for the object file.
 CFLAGS     	:= $(if $(DEBUG),-g -Wall, -O2 -Wall)

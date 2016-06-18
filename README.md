@@ -11,7 +11,7 @@ Linux C/C++工程中可生成ELF、动/静态库文件的通用Makefile
 
 本版本详细说明：[Linux C/C++工程中可生成ELF、动/静态库文件的通用Makefile](https://typecodes.com/cseries/cppgeneralmakefile.html 'Linux C/C++工程中可生成ELF、动/静态库文件的通用Makefile')。
 
-##### 2.2 Bug修复 (2015.06.18)
+##### 2.2 Bug修复 (2016.06.18)
 
 详细说明：[使用sed命令批量处理Makefile文件的脚本](https://typecodes.com/linux/handlemakefilebysed.html '使用sed命令批量处理Makefile文件的脚本')。
 

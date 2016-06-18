@@ -42,8 +42,8 @@ AR      := ar rcs
 NM      := nm
 STRIP   := strip
 RANLIB 	:= ranlib
-STD_OPT	:= -std=c99 -D_GNU_SOURCE 
-CC    	+= $(STD_OPT)
+STD_OPT	:= -D_GNU_SOURCE
+CC    	+= -std=c99 $(STD_OPT)
 CXX    	+= $(STD_OPT)
 
 # *nix system tools defined. You needn't modify these vars below generally.
@@ -73,9 +73,9 @@ CUR_OBJ		:= $(strip $(CUR_CPP:.cpp=.o) $(CUR_C:.c=.o))
 #CUR_DEP	:= $(addprefix $(PRG_BIN_DIR)/,$(notdir $(CUR_CPP:.cpp=.d) $(CUR_C:.c=.d)))
 CUR_DEP		:= $(strip $(CUR_CPP:.cpp=.d) $(CUR_C:.c=.d))
 
-# Create directory in the bin and library directory.
-$(foreach dirname,$(sort $(PRG_BIN_DIR) $(PRG_LIB_DIR)),\
-  $(shell $(MKDIR) $(dirname))))
+# Create directory in the header files, bin and library directory.
+$(foreach dirname,$(sort $(PRG_INC_DIR) $(PRG_BIN_DIR) $(PRG_LIB_DIR)),\
+  $(shell $(MKDIR) $(dirname)))
 
 # Complie and link variables. LD_LIBS means the dynamic or static library needed for the object file.
 CFLAGS     	:= $(if $(DEBUG),-g -Wall, -O2 -Wall)
@@ -153,6 +153,10 @@ clean:
 
 
 help:
+	@echo CC=[$(CC)]
+	@echo CXX=[$(CXX)]
+	@echo CFLAGS=[$(CFLAGS)]
+	@echo CXXFLAGS=[$(CXXFLAGS)]
 	@echo PROJECT_DIR=[$(PROJECT_DIR)]
 	@echo CURDIR=[$(CURDIR)]
 	@echo PRG_BIN_DIR=[$(PRG_BIN_DIR)]
@@ -164,7 +168,5 @@ help:
 	@echo CUR_CPP=[$(CUR_CPP)]
 	@echo CUR_OBJ=[$(CUR_OBJ)]
 	@echo CUR_DEP=[$(CUR_DEP)]
-	@echo STD_OPT=[$(STD_OPT)]
-	@echo CFLAGS=[$(CFLAGS)]
 	@echo STATIC_LIBS=[$(STATIC_LIBS)]
 	@echo DYNAMIC_LIBS=[$(DYNAMIC_LIBS)]

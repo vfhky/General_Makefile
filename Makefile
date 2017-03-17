@@ -148,8 +148,7 @@ all: $(ULT_BIN) $(ULT_LIBS)
 
 clean: 
 	-$(FIND) $(CURDIR) -name "*.o" -o -name "*.d" | $(XARGS) $(RM)
-	-$(RM) $(ULT_BIN)
-	-$(RM) $(ULT_LIBS)
+	-$(RM) $(ULT_BIN) $(ULT_LIBS)
 
 
 help:

@@ -111,11 +111,11 @@ define gen_depend
 endef
 
 # Rules to generate objects file(.o) from .c or .cpp files.
-$(CURDIR)/%.o: %.c
+$(CURDIR)/%.o: $(CURDIR)/%.c
 	@$(call gen_depend,$(patsubst %.o,%.d,$@),$<,$@,$(CC))
 	$(CC) $(CFLAGS) -o $@ -c $<
 
-$(CURDIR)/%.o: %.cpp
+$(CURDIR)/%.o: $(CURDIR)/%.cpp
 	@$(call gen_depend,$(patsubst %.o,%.d,$@),$<,$@,$(CXX))
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
@@ -124,6 +124,7 @@ define gen_excbin
   ULT_BIN += $(PRG_BIN_DIR)/$1
   $(PRG_BIN_DIR)/$1: $2
 	$3 $(LDFLAGS) $$^ $(LD_LIB_DIR) $(LD_LIBS) $(XLD_FLG) -o $$@
+	@echo "========================Success========================"
 endef
 
 # Gen_libs(libs,CUR_OBJ,cc). This command-package is used to generate a dynamic lib or a static lib.
@@ -131,10 +132,11 @@ define gen_libs
   ULT_LIBS += $(PRG_LIB_DIR)/$1
   $(PRG_LIB_DIR)/$1: $2
 	$3 $(if $(GEN_DYN_LIB),-shared $$^ $(CXXFLAGS) $(LD_LIB_DIR) $(LD_LIBS) $(XLD_FLG) -o $$@,$$@ $$^)
+	@echo "========================Success========================"
 endef
 
 # Call gen_excbin to generate a excutale file.
-$(foreach bin,$(EXCUTE_BIN),$(eval $(call gen_excbin,$(bin),$(CUR_OBJ),$(CXX))))
+$(foreach bin,$(EXCUTE_BIN),$(eval $(call gen_excbin,$(bin),$(CURDIR)/$(bin).o,$(CXX))))
 
 # Call gen_libs to generate a dynamic lib.
 $(foreach lib,$(DYNAMIC_LIBS),$(eval $(call gen_libs,$(lib),$(CUR_OBJ),$(CXX))))

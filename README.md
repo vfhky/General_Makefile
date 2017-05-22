@@ -19,6 +19,10 @@ Linux C/C++工程中可生成ELF、动/静态库文件的通用Makefile
 
 详细说明：[使用sed和awk查找和替换字符串处理Makefile文件（二）](https://typecodes.com/linux/sedawkfindreplace2.html '使用sed和awk查找和替换字符串处理Makefile文件（二）')。
 
+##### 2.4 优化 (2017-05-22 23:45)
+
+详细说明：[使用sed和awk查找和替换字符串处理Makefile文件（三）](https://typecodes.com/linux/sedawkfindreplace3.html '使用sed和awk查找和替换字符串处理Makefile文件（三）')。
+
 
 
 

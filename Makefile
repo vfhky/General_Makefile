@@ -47,6 +47,14 @@ CC    	+= -std=c99 $(STD_OPT)
 CXX    	+= $(STD_OPT)
 
 # *nix system tools defined. You needn't modify these vars below generally.
+BLACK = "\e[33;0m"
+RED  =  "\e[31;1m"
+GREEN = "\e[32;1m"
+YELLOW = "\e[33;3m"
+BLUE  = "\e[34;1m"
+PURPLE = "\e[35;1m"
+CYAN  = "\e[36;1m"
+WHITE = "\e[37;1m"
 CP		:= cp
 SED		:= sed
 FIND	:= find
@@ -124,7 +132,7 @@ define gen_excbin
   ULT_BIN += $(PRG_BIN_DIR)/$1
   $(PRG_BIN_DIR)/$1: $2
 	$3 $(LDFLAGS) $$^ $(LD_LIB_DIR) $(LD_LIBS) $(XLD_FLG) -o $$@
-	@echo "========================Success========================"
+	@echo -e $(YELLOW)"========================Success========================"$(BLACK)
 endef
 
 # Gen_libs(libs,CUR_OBJ,cc). This command-package is used to generate a dynamic lib or a static lib.
@@ -132,7 +140,7 @@ define gen_libs
   ULT_LIBS += $(PRG_LIB_DIR)/$1
   $(PRG_LIB_DIR)/$1: $2
 	$3 $(if $(GEN_DYN_LIB),-shared $$^ $(CXXFLAGS) $(LD_LIB_DIR) $(LD_LIBS) $(XLD_FLG) -o $$@,$$@ $$^)
-	@echo "========================Success========================"
+	@echo -e $(YELLOW)"========================Success========================"$(BLACK)
 endef
 
 # Call gen_excbin to generate a excutale file.

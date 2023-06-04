@@ -31,3 +31,6 @@ Linux C/C++工程中可生成ELF、动/静态库文件的通用Makefile
 
 详细说明：增加Makefile执行过程中的颜色输出，界面漂亮一些。
 
+
+##### 3.1 版本v1.0.0.1 (2023.06.04)
+本版本详细说明：[Linux C/C++工程中可生成 ELF、动/静态库文件的通用 Makefile（二）](https://typecodes.com/cseries/cppgeneralmakefile2.html 'Linux C/C++工程中可生成 ELF、动/静态库文件的通用 Makefile（二）')。

@@ -17,8 +17,10 @@ DEBUG       	:= y
 GEN_LIBS    	:= y
 # Flag of generate a dynamic lib: y means yes. It should be blank unless you want to generate a dynamic lib!
 GEN_DYN_LIB		:= y
-# The name of target bin file.Please let it be blank unless the target is a excutable file. 
-EXCUTE_BIN		:= 
+# generate a single target bin file.Please let it be blank unless the target is a excutable file.
+SINGLE_BIN		:=
+# generate mutil target bin files.Please let it be blank unless the target is a excutable file.
+MUTIL_BIN		:=
 # Name of the static lib. It should be blank unless the target is a static lib, then the GEN_LIBS is y and GEN_DYN_LIB is blank.
 # STATIC_LIBS		:= libsrcpbl.a
 # Name of the dynamic lib. It should be blank unless the target is a dynamic lib, then the GEN_LIBS is y and GEN_DYN_LIB is y.

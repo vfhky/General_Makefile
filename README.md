@@ -7,7 +7,7 @@ Linux C/C++工程中可生成ELF、动/静态库文件的通用Makefile
 
 在同一个目录下面生成多个可执行文件的效果图：
 
-![Linux C/C++工程中可生成ELF、动/静态库文件的通用Makefile](https://o3cex9zsl.qnssl.com/2015/08/linux_general_makefile_2.png "Linux C/C++工程中可生成ELF、动/静态库文件的通用Makefile")
+![Linux C/C++工程中可生成ELF、动/静态库文件的通用Makefile](https://cdn.typecodes.com/2015/08/linux_general_makefile_2.png "Linux C/C++工程中可生成ELF、动/静态库文件的通用Makefile")
 
 ## 2 版本更新说明
 ##### 2.1 版本v1.0.0.0 (2015.08.12)

@@ -130,8 +130,16 @@ $(CURDIR)/%.o: $(CURDIR)/%.cpp
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
 # Gen_excbin(target,CUR_OBJ,cc). This command-package is used to generate a excutable file.
-define gen_excbin
-  ULT_BIN += $(PRG_BIN_DIR)/$1
+define gen_single_excbin
+  ULT_SINGLE_BIN += $(PRG_BIN_DIR)/$1
+  $(PRG_BIN_DIR)/$1: $2
+	$3 $(LDFLAGS) $$^ $(LD_LIB_DIR) $(LD_LIBS) $(XLD_FLG) -o $$@
+	@echo -e $(YELLOW)"========================Success========================"$(BLACK)
+endef
+
+# Gen_excbin(target,CUR_OBJ,cc). This command-package is used to generate a excutable file.
+define gen_mutil_bin
+  ULT_MUTIL_BIN += $(PRG_BIN_DIR)/$1
   $(PRG_BIN_DIR)/$1: $2
 	$3 $(LDFLAGS) $$^ $(LD_LIB_DIR) $(LD_LIBS) $(XLD_FLG) -o $$@
 	@echo -e $(YELLOW)"========================Success========================"$(BLACK)
@@ -145,8 +153,11 @@ define gen_libs
 	@echo -e $(YELLOW)"========================Success========================"$(BLACK)
 endef
 
-# Call gen_excbin to generate a excutale file.
-$(foreach bin,$(EXCUTE_BIN),$(eval $(call gen_excbin,$(bin),$(CURDIR)/$(bin).o,$(CXX))))
+# Call gen_single_excbin to generate an excutale file.
+$(foreach bin,$(SINGLE_BIN),$(eval $(call gen_single_excbin,$(bin),$(CUR_OBJ),$(CXX))))
+
+# Call gen_mutil_bin to generate mutil excutale files.
+$(foreach bin,$(MUTIL_BIN),$(eval $(call gen_mutil_bin,$(bin),$(CURDIR)/$(bin).o,$(CXX))))
 
 # Call gen_libs to generate a dynamic lib.
 $(foreach lib,$(DYNAMIC_LIBS),$(eval $(call gen_libs,$(lib),$(CUR_OBJ),$(CXX))))
@@ -155,12 +166,12 @@ $(foreach lib,$(DYNAMIC_LIBS),$(eval $(call gen_libs,$(lib),$(CUR_OBJ),$(CXX))))
 $(foreach lib,$(STATIC_LIBS),$(eval $(call gen_libs,$(lib),$(CUR_OBJ),$(AR))))
 
 
-all: $(ULT_BIN) $(ULT_LIBS)
+all: $(ULT_SINGLE_BIN) $(ULT_MUTIL_BIN) $(ULT_LIBS)
 
 
-clean: 
+clean:
 	-$(FIND) $(CURDIR) -name "*.o" -o -name "*.d" | $(XARGS) $(RM)
-	-$(RM) $(ULT_BIN) $(ULT_LIBS)
+	-$(RM) $(ULT_SINGLE_BIN) $(ULT_MUTIL_BIN) $(ULT_LIBS)
 
 
 help:
@@ -181,3 +192,5 @@ help:
 	@echo CUR_DEP=[$(CUR_DEP)]
 	@echo STATIC_LIBS=[$(STATIC_LIBS)]
 	@echo DYNAMIC_LIBS=[$(DYNAMIC_LIBS)]
+
+
